@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Bundles = () => {
-  return <div>Bundles</div>;
+  return (
+    <div>dd</div>
+  )
 };
 
 export default Bundles;

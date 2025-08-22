@@ -38,7 +38,7 @@ module.exports = {
         pink: "pink",
       },
       backgroundImage: {
-        triangle: "url('/assets/img/triangle.svg')", 
+        triangle: "url('assets/img/triangle.svg')", 
         // положи triangle.svg в public/assets/img/
       },
       boxShadow: {
