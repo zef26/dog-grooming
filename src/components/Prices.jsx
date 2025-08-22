@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { bundleData } from '../data';
 import Bundles from './Bundles';
 
 const Prices = () => {
 
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
+  const [bundles, setBundles] = useState([]);
+
+  useEffect(()=> {
+    setBundles(bundleData[0].services)
+
+  },[]);
+
+  const getBandle = (name) => {
+    const newBundle = bundleData.find((bundle)=> {
+      return bundle.name === name
+    });
+    setBundles(newBundle.services);
+  }
   return (
   <section className='py-12 lg:py-24 '>
       <div className='container mx-auto'>
@@ -17,7 +30,13 @@ const Prices = () => {
           {bundleData.map((item, idx)=> {
             const {name, image, dogCategory} = item;
             return (
-              <div onClick={()=> setIndex(idx)} className='text-center cursor-pointer'>
+              <div
+               onClick={() => {
+                  setIndex(idx);
+                  getBandle(name);
+               } } 
+               className='text-center cursor-pointer'
+               key={idx}>
                 <div className='mb-2 transition-all duration-300 lg:mb-8 hover:scale-105'>
                   <img className='w-full ' src={image.type} alt="" />
                 </div>
@@ -29,6 +48,8 @@ const Prices = () => {
             )
           })}
         </div>
+
+        <Bundles bundles={bundles}/>
       </div>
     </section>
   )
